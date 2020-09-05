@@ -2,19 +2,19 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:platform_depends_app/screens/home_screen/home_screen.dart';
 
-class LoginScreen extends StatefulWidget {
+class RegisterScreen extends StatefulWidget {
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _RegisterScreenState createState() => _RegisterScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _RegisterScreenState extends State<RegisterScreen> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return  Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
       ),
@@ -31,7 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 fallbackWidth: 200,
               ),
               SizedBox(height: 20),
-              Text("Login Page"),
+              Text("Register Page"),
               SizedBox(height: 20),
               TextFormField(
                 controller: email,
@@ -54,12 +54,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   if (input.isEmpty) {
                     return 'password can\'t be empty';
                   }
+                  if (input.length < 6) {
+                    return 'Input password more than 6';
+                  }
                 },
               ),
               SizedBox(height: 20),
               RaisedButton(
-                onPressed: onLogin,
-                child: Text("Login"),
+                onPressed: onRegister,
+                child: Text("Register Now or never"),
               ),
             ],
           ),
@@ -68,11 +71,11 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Future<void> onLogin() async {
+  Future<void> onRegister() async{
     if (formKey.currentState.validate()) {
       try {
         UserCredential user =
-            await FirebaseAuth.instance.signInWithEmailAndPassword(
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: email.text,
           password: password.text,
         );

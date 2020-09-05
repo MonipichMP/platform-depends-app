@@ -8,6 +8,7 @@ import 'package:platform_depends_app/common_widget/form_text_field.dart';
 import 'package:platform_depends_app/common_widget/popup_menu_button.dart';
 import 'package:platform_depends_app/common_widget/stepper.dart';
 import 'package:platform_depends_app/screens/login_screen/login_screen.dart';
+import 'package:platform_depends_app/screens/register_screen/register_screen.dart';
 
 class BodyRootScreen extends StatefulWidget {
   @override
@@ -74,6 +75,16 @@ class _BodyState extends State<BodyRootScreen> {
               ),
             ),
             child: Text("Go to login"),
+          ),
+          SizedBox(height: 15),
+          RaisedButton(
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => RegisterScreen(),
+              ),
+            ),
+            child: Text("Go to Registtter"),
           ),
         ],
       ),

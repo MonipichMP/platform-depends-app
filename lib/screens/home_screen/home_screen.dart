@@ -5,7 +5,6 @@ class HomeScreen extends StatelessWidget {
 
   const HomeScreen({Key key, this.emailUser}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
